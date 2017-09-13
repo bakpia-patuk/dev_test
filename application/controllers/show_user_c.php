@@ -100,58 +100,76 @@ class Show_user_c extends CI_Controller {
 
 		$result = $this->show_user_m->show_user_detail($ic);
 		$table = '';
+		$id = $user_name = $gender = $join_date = $group_name = $remark = $photo = '';
 
 		if($result){
 			foreach ($result->result() as $row) {
-				$table .= '
-					<form class="form-horizontal">
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="ic" id="ic" class="form-control" placeholder="IC" value="'.$row->ic.'" disabled>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="user_name" id="user_name" class="form-control" placeholder="USER NAME" value="'.$row->user_name.'">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="gender" id="gender" class="form-control" placeholder="GENDER" value="'.$row->gender.'">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="join_date" id="join_date" class="form-control" placeholder="JOIN DATE" value="'.$row->join_date.'">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="group_name" id="group_name" class="form-control" placeholder="GROUP" value="'.$row->group_name.'">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="remark" id="remark" class="form-control" placeholder="REMARK" value="'.$row->remark.'">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="text" name="photo" id="photo" class="form-control" placeholder="PHOTO" value="'.$row->photo.'">
-							</div>
-						</div>	
-						<div class="form-group">
-							<div class="col-sm-10">
-								<button type="submit" onclick="edit_user_detail(\''.$row->ic.'\')" class="btn btn-primary">Save User</button>
-							</div>
-						</div>
-					</form>
-				';
+				$id 		= $row->ic;
+				$user_name 	= $row->user_name;
+				$gender 	= $row->gender;
+				$join_date 	= $row->join_date;
+				$group_name = $row->group_name;
+				$remark 	= $row->remark;
+				$photo 		= $row->photo;
 			}
-		}else{echo 'empty data';}
+		}else{
+				$id 		= '';
+				$user_name 	= '';
+				$gender 	= '';
+				$join_date 	= '';
+				$group_name = '';
+				$remark 	= '';
+				$photo 		= '';
+		}
+
+		$table .= '
+			<form class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="ic" id="ic" class="form-control" placeholder="IC" value="'.$id.'" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="user_name" id="user_name" class="form-control" placeholder="USER NAME" value="'.$user_name.'">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="gender" id="gender" class="form-control" placeholder="GENDER" value="'.$gender.'">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="join_date" id="join_date" class="form-control" placeholder="JOIN DATE" value="'.$join_date.'">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="group_name" id="group_name" class="form-control" placeholder="GROUP" value="'.$group_name.'">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="remark" id="remark" class="form-control" placeholder="REMARK" value="'.$remark.'">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="photo" id="photo" class="form-control" placeholder="PHOTO" value="'.$photo.'">
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="col-sm-10">
+						<button type="submit" onclick="edit_user_detail(\''.$id.'\')" class="btn btn-primary">Save User</button>
+					</div>
+				</div>
+			</form>
+		';
+
 		echo $table;
 
-	}	
+	}
 
 	function simpan_user(){
 		$this->load->model('show_user_m');

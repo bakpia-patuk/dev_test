@@ -27,7 +27,18 @@
 						</div>
 						<div class="panel-body">
 							<div id="div_show_user"></div>
-							<?php echo form_submit('login', 'Add User', 'class="btn btn-primary"') ?>					
+							<?php 
+								$js = 'onClick="edit_user_detail(\'\')"';
+								$data = array(
+								    'name' 		=> 'add_user',
+								    'id' 		=> 'add_user',
+								    'value' 	=> '',
+								    'type' 		=> 'button',
+								    'class' 	=> 'btn btn-primary',
+								    'content' 	=> 'Add User'
+								);								
+								echo form_button($data, '', $js); 
+							?>					
 						</div>
 						<div class="panel-body">
 							<div id="div_show_user_detail"></div>						
